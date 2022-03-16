@@ -2,7 +2,6 @@ package ru.job4j.dreamjob.model;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Objects;
 
 /**
  * @author Alex Gutorov
