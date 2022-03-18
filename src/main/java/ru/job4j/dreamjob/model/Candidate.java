@@ -17,6 +17,9 @@ public class Candidate {
 
     private final String created = LocalDateTime.now().format(timeFormatter);
 
+    public Candidate() {
+    }
+
     public Candidate(int id, String name, String description) {
         this.id = id;
         this.name = name;

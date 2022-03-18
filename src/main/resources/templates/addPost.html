@@ -33,7 +33,8 @@
                 <a class="nav-item nav-link" href="#">Главная</a>
                 <a class="nav-item nav-link" th:href="@{/posts}">Вакансии</a>
                 <a class="nav-item nav-link active" th:href="@{/formAddPost}">Добавить вакансию</a>
-                <a class="nav-item nav-link" th:href="@{/cadidates}">Кандидаты</a>
+                <a class="nav-item nav-link" th:href="@{/candidates}">Кандидаты</a>
+                <a class="nav-item nav-link" th:href="@{/formAddCandidate}">Добавить кандидата</a>
             </div>
         </div>
     </nav>
@@ -43,7 +44,7 @@
                 Новая вакансия.
             </div>
             <div class="card-body">
-                <form th:action="@{/savePost}" method="POST">
+                <form th:action="@{/createPost}" method="POST">
                     <div class="form-group">
                         <label for="name">Имя</label>
                         <input type="text" class="form-control" name="name" id="name">
