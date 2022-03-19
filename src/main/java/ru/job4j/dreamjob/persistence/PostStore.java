@@ -1,4 +1,4 @@
-package ru.job4j.dreamjob.store;
+package ru.job4j.dreamjob.persistence;
 
 import ru.job4j.dreamjob.model.Post;
 
@@ -14,11 +14,11 @@ import java.util.concurrent.atomic.AtomicInteger;
  */
 public class PostStore {
     private static final AtomicInteger ID = new AtomicInteger();
-    private static final PostStore INST = new PostStore(ID);
+    private static final PostStore INST = new PostStore();
 
     private final Map<Integer, Post> posts = new ConcurrentHashMap<>();
 
-    private PostStore(AtomicInteger id) {
+    private PostStore() {
         posts.put(1, new Post(1, "Junior Java Job", "Junior"));
         posts.put(2, new Post(2, "Middle Java Job", "Middle"));
         posts.put(3, new Post(3, "Senior Java Job", "Senior"));
