@@ -1,5 +1,6 @@
 package ru.job4j.dreamjob.persistence;
 
+import net.jcip.annotations.ThreadSafe;
 import org.springframework.stereotype.Repository;
 import ru.job4j.dreamjob.model.Post;
 
@@ -13,6 +14,7 @@ import java.util.concurrent.atomic.AtomicInteger;
  * @version 1.4
  * @created 16/03/2022 - 11:41
  */
+@ThreadSafe
 @Repository
 public class PostStore {
     private static final AtomicInteger ID = new AtomicInteger();
