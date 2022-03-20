@@ -1,5 +1,6 @@
 package ru.job4j.dreamjob.model;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -8,16 +9,18 @@ import java.time.format.DateTimeFormatter;
  * @version 1.0
  * @created 16/03/2022 - 11:38
  */
-public class Post {
+public class Post implements Serializable {
     private int id;
     private String name;
     private String description;
+    private boolean visible;
+    private City city;
 
     private final DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("dd-MMMM-EEEE-yyyy HH:mm:ss");
 
     private final String created = LocalDateTime.now().format(timeFormatter);
 
-    public Post() {
+    private Post() {
     }
 
     public Post(int id, String name, String description) {
