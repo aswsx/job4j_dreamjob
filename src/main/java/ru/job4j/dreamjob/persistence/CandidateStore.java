@@ -38,7 +38,9 @@ public class CandidateStore {
     }
 
     public void update(Candidate candidate) {
-        candidate.setId(ID.incrementAndGet());
+        if (candidate.getId() == 0) {
+            candidate.setId(ID.incrementAndGet());
+        }
         candidates.put(candidate.getId(), candidate);
     }
 
