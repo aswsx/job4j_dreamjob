@@ -40,7 +40,6 @@ public class PostStore {
     }
 
     public void update(Post post) {
-        post.setId(ID.incrementAndGet());
         posts.put(post.getId(), post);
     }
 
