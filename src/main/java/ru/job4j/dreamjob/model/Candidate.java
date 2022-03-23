@@ -12,6 +12,7 @@ public class Candidate {
     private int id;
     private String name;
     private String description;
+    private byte[] photo;
 
     private final DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("dd-MMMM-EEEE-yyyy HH:mm:ss");
 
@@ -57,6 +58,14 @@ public class Candidate {
 
     public String getCreated() {
         return created;
+    }
+
+    public byte[] getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(byte[] photo) {
+        this.photo = photo;
     }
 
     @Override
