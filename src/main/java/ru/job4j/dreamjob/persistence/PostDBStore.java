@@ -61,11 +61,15 @@ public class PostDBStore {
 
     public void update(Post post) {
         try (Connection cn = pool.getConnection();
-             PreparedStatement ps = cn.prepareStatement("UPDATE post set name = ? where id = ?")
-        ) {
+             PreparedStatement ps = cn.prepareStatement("UPDATE post set name = ? where id = ?")) {
             ps.setString(1, post.getName());
             ps.setInt(2, post.getId());
             ps.execute();
+            try (ResultSet id = ps.getGeneratedKeys()) {
+                if (id.next()) {
+                    post.setId(id.getInt(1));
+                }
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -100,6 +104,15 @@ public class PostDBStore {
                     post.setId(id.getInt(1));
                 }
             }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void clearTable() {
+        try (Connection cn = pool.getConnection();
+             PreparedStatement ps = cn.prepareStatement("TRUNCATE TABLE post RESTART IDENTITY")) {
+            ps.execute();
         } catch (Exception e) {
             e.printStackTrace();
         }

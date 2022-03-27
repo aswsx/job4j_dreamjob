@@ -42,7 +42,7 @@ public class CandidateDBStore {
 
     public Candidate add(Candidate candidate) {
         try (Connection cn = pool.getConnection();
-             PreparedStatement ps = cn.prepareStatement("INSERT INTO post(name, id)  VALUES (?, ?)")) {
+             PreparedStatement ps = cn.prepareStatement("INSERT INTO candidate(name, id)  VALUES (?, ?)")) {
             ps.setString(1, candidate.getName());
             ps.setInt(2, candidate.getId());
             ps.execute();
@@ -59,11 +59,15 @@ public class CandidateDBStore {
 
     public void update(Candidate candidate) {
         try (Connection cn = pool.getConnection();
-             PreparedStatement ps = cn.prepareStatement("UPDATE post set name = ? where id = ?")
-        ) {
+             PreparedStatement ps = cn.prepareStatement("UPDATE candidate set name = ? where id = ?")) {
             ps.setString(1, candidate.getName());
             ps.setInt(2, candidate.getId());
             ps.execute();
+            try (ResultSet id = ps.getGeneratedKeys()) {
+                if (id.next()) {
+                    candidate.setId(id.getInt(1));
+                }
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -72,7 +76,7 @@ public class CandidateDBStore {
     public Candidate findById(int id) {
         Candidate candidate = null;
         try (Connection cn = pool.getConnection();
-             PreparedStatement ps = cn.prepareStatement("SELECT * FROM post WHERE id = ?")
+             PreparedStatement ps = cn.prepareStatement("SELECT * FROM candidate WHERE id = ?")
         ) {
             ps.setInt(1, id);
             try (ResultSet it = ps.executeQuery()) {
@@ -88,7 +92,7 @@ public class CandidateDBStore {
 
     public void create(Candidate candidate) {
         try (Connection cn = pool.getConnection();
-             PreparedStatement ps = cn.prepareStatement("INSERT INTO post(name) VALUES (?)",
+             PreparedStatement ps = cn.prepareStatement("INSERT INTO candidate(name) VALUES (?)",
                      PreparedStatement.RETURN_GENERATED_KEYS)
         ) {
             ps.setString(1, candidate.getName());
@@ -98,6 +102,15 @@ public class CandidateDBStore {
                     candidate.setId(id.getInt(1));
                 }
             }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void clearTable() {
+        try (Connection cn = pool.getConnection();
+             PreparedStatement ps = cn.prepareStatement("TRUNCATE TABLE post RESTART IDENTITY")) {
+            ps.execute();
         } catch (Exception e) {
             e.printStackTrace();
         }

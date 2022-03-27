@@ -17,7 +17,7 @@ import java.util.Map;
 @ThreadSafe
 @Service
 public class CityService {
-    private final Map<Integer, City> cities = new HashMap<Integer, City>();
+    private final Map<Integer, City> cities = new HashMap<>();
 
     public CityService() {
         cities.put(1, new City(1, "Москва"));
