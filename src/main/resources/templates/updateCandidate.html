@@ -20,22 +20,21 @@
 
     <title>Работа мечты</title>
 </head>
+
 <body>
 <div class="container">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">Dream Job, <small th:text="${user}"></small></a>
+        <a class="navbar-brand" href="/index">Главная<small th:text="${user}"></small></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
                 aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
-                <a class="nav-item nav-link" href="#">Главная</a>
                 <a class="nav-item nav-link" th:href="@{/posts}">Вакансии</a>
                 <a class="nav-item nav-link active" th:href="@{/formAddPost}">Добавить вакансию</a>
                 <a class="nav-item nav-link" th:href="@{/candidates}">Кандидаты</a>
                 <a class="nav-item nav-link" th:href="@{/formAddCandidate}">Добавить кандидата</a>
-                <a class="nav-item nav-link" th:href="@{/formUpdateCandidate}">Изменить кандидата</a>
                 <a class="nav-item nav-link" th:href="@{/formAddUser}">Регистрация пользователя</a>
             </div>
         </div>
@@ -48,14 +47,17 @@
             <div class="card-body">
                 <form th:action="@{/updateCandidate}" method="POST" enctype="multipart/form-data"
                       th:object="${candidate}">
-                    <input type="hidden" name="id" th:field="*{id}"/>
                     <div class="form-group">
+                        <input type="hidden" name="id" th:field="*{id}"/>
+                        <input type="hidden" name="created" th:field="*{created}"/>
                         <label for="name">Имя</label>
                         <input type="text" class="form-control" name="name" id="name" th:field="*{name}">
+                        <label for="desc">Описание</label>
+                        <input type="text" class="form-control" name="desc" id="desc" th:field="*{description}">
                     </div>
                     <div class="form-group">
                         <label for="name">Фотография</label>
-                        <input type="file" class="form-control" name="file" id="photo">
+                        <input type="file" class="form-control" name="file" id="file">
                     </div>
                     <button type="submit" class="btn btn-primary">Сохранить</button>
                 </form>

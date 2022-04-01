@@ -1,5 +1,6 @@
 package ru.job4j.dreamjob.model;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -8,15 +9,14 @@ import java.time.format.DateTimeFormatter;
  * @version 1.0
  * @created 16/03/2022 - 21:37
  */
-public class Candidate {
+public class Candidate implements Serializable {
     private int id;
     private String name;
     private String description;
     private byte[] photo;
 
     private final DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("dd-MMMM-EEEE-yyyy HH:mm:ss");
-
-    private final String created = LocalDateTime.now().format(timeFormatter);
+    private String created = LocalDateTime.now().format(timeFormatter);
 
     public Candidate() {
     }
@@ -25,6 +25,14 @@ public class Candidate {
         this.id = id;
         this.name = name;
         this.description = description;
+    }
+
+    public Candidate(int id, String name, String description, byte[] photo, String created) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.photo = photo;
+        this.created = created;
     }
 
     public Candidate(int id, String name) {

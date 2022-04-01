@@ -20,23 +20,19 @@ public class PostService {
         this.postDBStore = postDBStore;
     }
 
-    public Collection<Post> findAll() {
-        return postDBStore.findAll();
-    }
-
     public void add(Post post) {
         postDBStore.add(post);
-    }
-
-    public Post findById(int id) {
-        return postDBStore.findById(id);
     }
 
     public void update(Post post) {
         postDBStore.update(post);
     }
 
-    public void create(Post post) {
-        postDBStore.create(post);
+    public Collection<Post> findAll() {
+        return postDBStore.findAll();
+    }
+
+    public Post findById(int id) {
+        return postDBStore.findById(id);
     }
 }

@@ -19,7 +19,7 @@ import ru.job4j.dreamjob.service.PostService;
 @ThreadSafe
 @Controller
 public class PostController {
-
+    private static final String REDIRECT = "redirect:/posts";
     private final PostService postService;
     private final CityService cityService;
 
@@ -40,33 +40,21 @@ public class PostController {
         return "addPost";
     }
 
+    @PostMapping("/addPost")
+    public String addPost(@ModelAttribute Post post) {
+        postService.add(post);
+        return REDIRECT;
+    }
+
     @GetMapping("/formUpdatePost/{postId}")
     public String formUpdatePost(Model model, @PathVariable("postId") int id) {
         model.addAttribute("post", postService.findById(id));
         return "updatePost";
     }
 
-    @GetMapping("/addPost")
-    public String addPost(Model model) {
-        model.addAttribute("post", new Post(0, "Заполните поле"));
-        return "addPost";
-    }
-
     @PostMapping("/updatePost")
     public String updatePost(@ModelAttribute Post post) {
         postService.update(post);
-        return "redirect:/posts";
-    }
-
-    @PostMapping("/createPost")
-    public String createPost(@ModelAttribute Post post) {
-        postService.create(post);
-        return "redirect:/posts";
-    }
-
-    @PostMapping("/savePost")
-    public String savePost(@ModelAttribute Post post) {
-        postService.add(post);
-        return "redirect:/posts";
+        return REDIRECT;
     }
 }

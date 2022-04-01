@@ -1,5 +1,6 @@
 package ru.job4j.dreamjob.model;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 /**
@@ -7,7 +8,7 @@ import java.util.Objects;
  * @version 1.1
  * @created 20/03/2022 - 21:14
  */
-public class City {
+public class City implements Serializable {
     private int id;
     private String name;
 
@@ -16,6 +17,10 @@ public class City {
 
     public City(int id, String name) {
         this.id = id;
+        this.name = name;
+    }
+
+    public City(String name) {
         this.name = name;
     }
 

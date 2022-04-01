@@ -23,12 +23,29 @@
 
 <body>
 <div class="container">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="/index">Главная <small th:text="${user}"></small></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <a class="nav-item nav-link" th:href="@{/posts}">Вакансии</a>
+                <a class="nav-item nav-link active" th:href="@{/formAddPost}">Добавить вакансию</a>
+                <a class="nav-item nav-link" th:href="@{/candidates}">Кандидаты</a>
+                <a class="nav-item nav-link active" th:href="@{/formAddCandidate}">Добавить кандидата</a>
+                <a class="nav-item nav-link" th:href="@{/formAddUser}">Регистрация пользователя</a>
+            </div>
+        </div>
+    </nav>
     <div class="row">
         <table class="table">
             <thead>
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">Имя</th>
+                <th scope="col">Фото</th>
                 <th scope="col">Описание</th>
                 <th scope="col">Создано</th>
             </tr>
@@ -37,8 +54,17 @@
             <tr th:each="candidate: ${candidates}">
                 <td th:text="${candidate.id}"></td>
                 <td>
-                    <img th:width="150" th:high="150" th:src="@{|/photoCandidate/${candidate.id}|}">
+                    <a th:href="@{|/formUpdateCandidate/${candidate.id}|}">
+                        <i class="fa fa-edit"></i>
+                    </a>
                     <span th:text="${candidate.name}"></span>
+                </td>
+                <td>
+                    <img th:width="150" th:high="150" th:src="@{|/photoCandidate/${candidate.id}|}">
+                </td>
+                <td th:text="${candidate.description}"/>
+                <td>
+                    <span th:text="${candidate.created}"></span>
                 </td>
             </tr>
             </tbody>

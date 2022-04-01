@@ -22,23 +22,19 @@ public class CandidateService {
         this.candidateDBStore = candidateDBStore;
     }
 
-    public Collection<Candidate> findAll() {
-        return candidateDBStore.findAll();
-    }
-
     public void add(Candidate candidate) {
         candidateDBStore.add(candidate);
-    }
-
-    public Candidate findById(int id) {
-        return candidateDBStore.findById(id);
     }
 
     public void update(Candidate candidate) {
         candidateDBStore.update(candidate);
     }
 
-    public void create(Candidate candidate) {
-        candidateDBStore.create(candidate);
+    public Collection<Candidate> findAll() {
+        return candidateDBStore.findAll();
+    }
+
+    public Candidate findById(int id) {
+        return candidateDBStore.findById(id);
     }
 }

@@ -1,12 +1,12 @@
 package ru.job4j.dreamjob.persistence;
 
-import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import ru.job4j.dreamjob.Main;
+import ru.job4j.dreamjob.model.City;
 import ru.job4j.dreamjob.model.Post;
 
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.is;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * @author Alex Gutorov
@@ -15,38 +15,38 @@ import static org.hamcrest.Matchers.is;
  */
 class PostDBStoreTest {
 
-    @BeforeEach
+    @AfterEach
     void tableCleanup() {
         PostDBStore store = new PostDBStore(new Main().loadPool());
         store.clearTable();
     }
 
     @Test
-    void whenCreatePostAndThenFoundByID() {
+    void whenAddPostAndThenFoundByID() {
         PostDBStore store = new PostDBStore(new Main().loadPool());
-        Post post = new Post("Java Job");
-        store.create(post);
+        Post post = new Post("name", "desc", new City(1, "Москва"), null);
+        store.add(post);
         Post postInDb = store.findById(post.getId());
-        assertThat(postInDb.getName(), is(post.getName()));
+        assertEquals(postInDb.getName(), (post.getName()));
     }
 
     @Test
     void whenAddPost() {
         PostDBStore store = new PostDBStore(new Main().loadPool());
-        Post post = new Post(1, "Java Job");
+        Post post = new Post("name", "desc", new City(1, "Москва"), null);
         store.add(post);
         Post postInDb = store.findById(post.getId());
-        assertThat(postInDb.getName(), is(post.getName()));
+        assertEquals(postInDb.getName(), (post.getName()));
     }
 
     @Test
     void whenUpdatePost() {
         PostDBStore store = new PostDBStore(new Main().loadPool());
-        Post post = new Post("Java Job");
+        Post post = new Post("Dream Job", "desc", new City(1, "Москва"), null);
         store.add(post);
         Post newPOst = new Post(post.getId(), "Java Dream Job");
         store.update(newPOst);
         Post postInDb = store.findById(post.getId());
-        assertThat(postInDb.getName(), is("Java Dream Job"));
+        assertEquals(postInDb.getName(), ("Java Dream Job"));
     }
 }

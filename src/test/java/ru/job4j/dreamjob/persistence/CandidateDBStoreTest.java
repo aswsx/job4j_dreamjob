@@ -1,6 +1,6 @@
 package ru.job4j.dreamjob.persistence;
 
-import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import ru.job4j.dreamjob.Main;
 import ru.job4j.dreamjob.model.Candidate;
@@ -15,17 +15,17 @@ import static org.hamcrest.Matchers.is;
  */
 class CandidateDBStoreTest {
 
-    @BeforeEach
+    @AfterEach
     void tableCleanup() {
         CandidateDBStore store = new CandidateDBStore(new Main().loadPool());
         store.clearTable();
     }
 
     @Test
-    void whenCreateCandidateAndThenFoundByID() {
+    void whenAddCandidateAndThenFoundByID() {
         CandidateDBStore store = new CandidateDBStore(new Main().loadPool());
         Candidate candidate = new Candidate("Ivan");
-        store.create(candidate);
+        store.add(candidate);
         Candidate candidateInDb = store.findById(candidate.getId());
         assertThat(candidateInDb.getName(), is(candidate.getName()));
     }
@@ -33,7 +33,7 @@ class CandidateDBStoreTest {
     @Test
     void whenAddCandidate() {
         CandidateDBStore store = new CandidateDBStore(new Main().loadPool());
-        Candidate candidate = new Candidate(1, "Ivan");
+        Candidate candidate = new Candidate("Ivan");
         store.add(candidate);
         Candidate candidateInDb = store.findById(candidate.getId());
         assertThat(candidateInDb.getName(), is(candidate.getName()));
