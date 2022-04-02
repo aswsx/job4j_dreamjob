@@ -25,6 +25,9 @@ public class User implements Serializable {
         this.password = password;
     }
 
+    public User() {
+    }
+
     public int getId() {
         return id;
     }
@@ -95,7 +98,6 @@ public class User implements Serializable {
 
     @Override
     public String toString() {
-        return String.format("User(id=%s, name=%s, email=%s, password=%s, timeFormatter=%s, created=%s)",
-                this.id, this.name, this.email, this.password, this.timeFormatter, this.created);
+        return String.format("%s", this.name);
     }
 }

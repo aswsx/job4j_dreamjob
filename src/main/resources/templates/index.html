@@ -24,7 +24,7 @@
 <body>
 <div class="container">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="/index">Главная</a>
+        <a class="navbar-brand" href="/index">Главная</a>  <small th:text="${user}"></small></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
                 aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -34,9 +34,16 @@
                 <a class="nav-item nav-link" th:href="@{/posts}">Вакансии</a>
                 <a class="nav-item nav-link active" th:href="@{/formAddPost}">Добавить вакансию</a>
                 <a class="nav-item nav-link" th:href="@{/candidates}">Кандидаты</a>
-                <a class="nav-item nav-link" th:href="@{/formAddCandidate}">Добавить кандидата</a>
+                <a class="nav-item nav-link active" th:href="@{/formAddCandidate}">Добавить кандидата</a>
                 <a class="nav-item nav-link" th:href="@{/formAddUser}">Регистрация пользователя</a>
-                <a class="nav-item nav-link" th:href="@{/loginPage}">Вход</a>
+                <a class="nav-item nav-link" th:if="${user.name == 'Гость'}" th:href="@{/loginPage}">
+                    <span th:text="${user.name}"></span>
+                    <span> | Войти</span>
+                </a>
+                <a class="nav-item nav-link" th:if="${user.name != 'Гость'}" th:href="@{/logout}">
+                    <span th:text="${user.name}"></span>
+                    <span> | Выйти</span>
+                </a>
             </div>
         </div>
     </nav>
