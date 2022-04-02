@@ -36,6 +36,7 @@
                 <a class="nav-item nav-link" th:href="@{/candidates}">Кандидаты</a>
                 <a class="nav-item nav-link" th:href="@{/formAddCandidate}">Добавить кандидата</a>
                 <a class="nav-item nav-link" th:href="@{/formAddUser}">Регистрация пользователя</a>
+                <a class="nav-item nav-link" th:href="@{/loginPage}">Вход</a>
             </div>
         </div>
     </nav>
@@ -50,6 +51,8 @@
                         <input type="text" class="form-control" name="name" id="name">
                         <label for="email">e-mail</label>
                         <input type="text" class="form-control" name="email" id="email">
+                        <label for="password">password</label>
+                        <input type="text" class="form-control" name="password" id="password">
                     </div>
                     <button type="submit" class="btn btn-primary mt-3">Регистрация</button>
                     <div th:if="${fail}" class="alert alert-danger" role="alert">
