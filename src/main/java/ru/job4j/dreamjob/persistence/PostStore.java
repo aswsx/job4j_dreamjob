@@ -42,9 +42,4 @@ public class PostStore {
     public void update(Post post) {
         posts.put(post.getId(), post);
     }
-
-    public void create(Post post) {
-        post.setId(ID.incrementAndGet());
-        posts.put(post.getId(), post);
-    }
 }

@@ -25,6 +25,7 @@ import java.io.IOException;
 @Controller
 public class CandidateController {
     private static final String REDIRECT = "redirect:/candidates";
+    private static final String GUEST = "Гость";
     private final CandidateService candidateService;
 
     public CandidateController(CandidateService candidateService) {
@@ -36,7 +37,7 @@ public class CandidateController {
         User user = (User) session.getAttribute("user");
         if (user == null) {
             user = new User();
-            user.setName("Гость");
+            user.setName(GUEST);
         }
         model.addAttribute("user", user);
         model.addAttribute("candidates", candidateService.findAll());
@@ -48,7 +49,7 @@ public class CandidateController {
         User user = (User) session.getAttribute("user");
         if (user == null) {
             user = new User();
-            user.setName("Гость");
+            user.setName(GUEST);
         }
         model.addAttribute("user", user);
         return "addCandidate";
@@ -67,7 +68,7 @@ public class CandidateController {
         User user = (User) session.getAttribute("user");
         if (user == null) {
             user = new User();
-            user.setName("Гость");
+            user.setName(GUEST);
         }
         model.addAttribute("user", user);
         model.addAttribute("candidate", candidateService.findById(id));

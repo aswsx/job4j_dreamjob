@@ -45,9 +45,4 @@ public class CandidateStore {
         }
         candidates.put(candidate.getId(), candidate);
     }
-
-    public void create(Candidate candidate) {
-        candidate.setId(ID.incrementAndGet());
-        candidates.put(candidate.getId(), candidate);
-    }
 }

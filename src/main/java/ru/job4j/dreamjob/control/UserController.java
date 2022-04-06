@@ -23,6 +23,7 @@ import java.util.Optional;
 @Controller
 public class UserController {
     private final UserService userService;
+    private static final String GUEST = "Гость";
 
     public UserController(UserService userService) {
         this.userService = userService;
@@ -34,7 +35,7 @@ public class UserController {
         User user = (User) session.getAttribute("user");
         if (user == null) {
             user = new User();
-            user.setName("Гость");
+            user.setName(GUEST);
         }
         model.addAttribute("user", user);
         model.addAttribute("fail", fail != null);
@@ -56,7 +57,7 @@ public class UserController {
         User user = (User) session.getAttribute("user");
         if (user == null) {
             user = new User();
-            user.setName("Гость");
+            user.setName(GUEST);
         }
         model.addAttribute("user", user);
         return "updateUser";
@@ -73,7 +74,7 @@ public class UserController {
         User user = (User) session.getAttribute("user");
         if (user == null) {
             user = new User();
-            user.setName("Гость");
+            user.setName(GUEST);
         }
         model.addAttribute("user", user);
         return "success";
@@ -85,7 +86,7 @@ public class UserController {
         User user = (User) session.getAttribute("user");
         if (user == null) {
             user = new User();
-            user.setName("Гость");
+            user.setName(GUEST);
         }
         model.addAttribute("user", user);
         model.addAttribute("fail", fail != null);

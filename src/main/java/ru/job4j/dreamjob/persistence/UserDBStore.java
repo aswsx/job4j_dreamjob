@@ -7,6 +7,7 @@ import ru.job4j.dreamjob.model.User;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.Optional;
 
 /**
@@ -25,7 +26,7 @@ public class UserDBStore {
     public Optional<User> addUser(User user) {
         try (Connection cn = pool.getConnection();
              PreparedStatement ps = cn.prepareStatement("INSERT INTO users(name, email)  VALUES (?, ?)",
-                     PreparedStatement.RETURN_GENERATED_KEYS)) {
+                     Statement.RETURN_GENERATED_KEYS)) {
             ps.setString(1, user.getName());
             ps.setString(2, user.getEmail());
             ps.execute();
@@ -46,15 +47,6 @@ public class UserDBStore {
              PreparedStatement ps = cn.prepareStatement("UPDATE users set name = ? where id = ?")) {
             ps.setString(1, user.getName());
             ps.setInt(2, user.getId());
-            ps.execute();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void clearTable() {
-        try (Connection cn = pool.getConnection();
-             PreparedStatement ps = cn.prepareStatement("TRUNCATE TABLE users RESTART IDENTITY")) {
             ps.execute();
         } catch (Exception e) {
             e.printStackTrace();

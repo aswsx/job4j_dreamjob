@@ -23,6 +23,7 @@ import javax.servlet.http.HttpSession;
 @Controller
 public class PostController {
     private static final String REDIRECT = "redirect:/posts";
+    private static final String GUEST = "Гость";
     private final PostService postService;
     private final CityService cityService;
 
@@ -36,7 +37,7 @@ public class PostController {
         User user = (User) session.getAttribute("user");
         if (user == null) {
             user = new User();
-            user.setName("Гость");
+            user.setName(GUEST);
         }
         model.addAttribute("user", user);
         model.addAttribute("posts", postService.findAll());
@@ -48,7 +49,7 @@ public class PostController {
         User user = (User) session.getAttribute("user");
         if (user == null) {
             user = new User();
-            user.setName("Гость");
+            user.setName(GUEST);
         }
         model.addAttribute("user", user);
         model.addAttribute("cities", cityService.getAllCities());
@@ -66,7 +67,7 @@ public class PostController {
         User user = (User) session.getAttribute("user");
         if (user == null) {
             user = new User();
-            user.setName("Гость");
+            user.setName(GUEST);
         }
         model.addAttribute("user", user);
         model.addAttribute("post", postService.findById(id));

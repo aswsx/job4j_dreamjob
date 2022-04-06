@@ -1,5 +1,9 @@
 package ru.job4j.dreamjob.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
+
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -9,6 +13,9 @@ import java.time.format.DateTimeFormatter;
  * @version 1.0
  * @created 28/03/2022 - 9:40
  */
+@Getter
+@Setter
+@AllArgsConstructor
 public class User implements Serializable {
     private int id;
     private String name;
@@ -18,50 +25,14 @@ public class User implements Serializable {
     private final DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("dd-MMMM-EEEE-yyyy HH:mm:ss");
     private String created = LocalDateTime.now().format(timeFormatter);
 
+    public User() {
+    }
+
     public User(int id, String name, String email, String password) {
         this.id = id;
         this.name = name;
         this.email = email;
         this.password = password;
-    }
-
-    public User() {
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getCreated() {
-        return created;
     }
 
     @Override

@@ -1,5 +1,9 @@
 package ru.job4j.dreamjob.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
+
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -8,6 +12,9 @@ import java.util.Objects;
  * @version 1.1
  * @created 20/03/2022 - 21:14
  */
+@Getter
+@Setter
+@AllArgsConstructor
 public class City implements Serializable {
     private int id;
     private String name;
@@ -15,28 +22,7 @@ public class City implements Serializable {
     public City() {
     }
 
-    public City(int id, String name) {
-        this.id = id;
-        this.name = name;
-    }
-
     public City(String name) {
-        this.name = name;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
         this.name = name;
     }
 

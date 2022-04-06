@@ -1,5 +1,9 @@
 package ru.job4j.dreamjob.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
+
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -9,6 +13,9 @@ import java.time.format.DateTimeFormatter;
  * @version 1.0
  * @created 16/03/2022 - 21:37
  */
+@Getter
+@Setter
+@AllArgsConstructor
 public class Candidate implements Serializable {
     private int id;
     private String name;
@@ -27,14 +34,6 @@ public class Candidate implements Serializable {
         this.description = description;
     }
 
-    public Candidate(int id, String name, String description, byte[] photo, String created) {
-        this.id = id;
-        this.name = name;
-        this.description = description;
-        this.photo = photo;
-        this.created = created;
-    }
-
     public Candidate(int id, String name) {
         this.id = id;
         this.name = name;
@@ -42,42 +41,6 @@ public class Candidate implements Serializable {
 
     public Candidate(String name) {
         this.name = name;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public String getCreated() {
-        return created;
-    }
-
-    public byte[] getPhoto() {
-        return photo;
-    }
-
-    public void setPhoto(byte[] photo) {
-        this.photo = photo;
     }
 
     @Override

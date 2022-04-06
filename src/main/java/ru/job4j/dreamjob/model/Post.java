@@ -1,5 +1,9 @@
 package ru.job4j.dreamjob.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
+
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -9,6 +13,9 @@ import java.time.format.DateTimeFormatter;
  * @version 1.0
  * @created 16/03/2022 - 11:38
  */
+@Getter
+@Setter
+@AllArgsConstructor
 public class Post implements Serializable {
     private int id;
     private String name;
@@ -50,52 +57,8 @@ public class Post implements Serializable {
         this.name = name;
     }
 
-    public Post(String name) {
-        this.name = name;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
     public boolean isVisible() {
         return visible;
-    }
-
-    public void setVisible(boolean visible) {
-        this.visible = visible;
-    }
-
-    public City getCity() {
-        return city;
-    }
-
-    public void setCity(City city) {
-        this.city = city;
-    }
-
-    public String getCreated() {
-        return created;
     }
 
     @Override
