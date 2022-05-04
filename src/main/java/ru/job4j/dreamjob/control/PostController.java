@@ -41,7 +41,7 @@ public class PostController {
         }
         model.addAttribute("user", user);
         model.addAttribute("posts", postService.findAll());
-        return "posts";
+        return "post/posts";
     }
 
     @GetMapping("/formAddPost")
@@ -53,7 +53,7 @@ public class PostController {
         }
         model.addAttribute("user", user);
         model.addAttribute("cities", cityService.getAllCities());
-        return "addPost";
+        return "post/addPost";
     }
 
     @PostMapping("/addPost")
@@ -71,7 +71,7 @@ public class PostController {
         }
         model.addAttribute("user", user);
         model.addAttribute("post", postService.findById(id));
-        return "updatePost";
+        return "post/updatePost";
     }
 
     @PostMapping("/updatePost")

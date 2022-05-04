@@ -39,7 +39,7 @@ public class UserController {
         }
         model.addAttribute("user", user);
         model.addAttribute("fail", fail != null);
-        return "addUser";
+        return "user/addUser";
     }
 
     @PostMapping("/addUser")
@@ -49,7 +49,7 @@ public class UserController {
             model.addAttribute("message", "Пользователь с такой почтой уже существует");
             return "redirect:/formAddUser?fail=true";
         }
-        return "redirect:/success";
+        return "redirect:/user/success";
     }
 
     @GetMapping("/formUpdateUser")
@@ -60,7 +60,7 @@ public class UserController {
             user.setName(GUEST);
         }
         model.addAttribute("user", user);
-        return "updateUser";
+        return "user/updateUser";
     }
 
     @PostMapping("/updateUser")
@@ -77,7 +77,7 @@ public class UserController {
             user.setName(GUEST);
         }
         model.addAttribute("user", user);
-        return "success";
+        return "user/success";
     }
 
     @GetMapping("/loginPage")
@@ -90,7 +90,7 @@ public class UserController {
         }
         model.addAttribute("user", user);
         model.addAttribute("fail", fail != null);
-        return "login";
+        return "user/login";
     }
 
     @PostMapping("/login")

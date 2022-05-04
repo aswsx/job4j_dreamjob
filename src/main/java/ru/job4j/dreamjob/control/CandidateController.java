@@ -41,7 +41,7 @@ public class CandidateController {
         }
         model.addAttribute("user", user);
         model.addAttribute("candidates", candidateService.findAll());
-        return "candidates";
+        return "candidate/candidates";
     }
 
     @GetMapping("/formAddCandidate")
@@ -52,7 +52,7 @@ public class CandidateController {
             user.setName(GUEST);
         }
         model.addAttribute("user", user);
-        return "addCandidate";
+        return "candidate/addCandidate";
     }
 
     @PostMapping("/addCandidate")
@@ -72,7 +72,7 @@ public class CandidateController {
         }
         model.addAttribute("user", user);
         model.addAttribute("candidate", candidateService.findById(id));
-        return "updateCandidate";
+        return "candidate/updateCandidate";
     }
 
     @PostMapping("/updateCandidate")
