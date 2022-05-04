@@ -42,7 +42,7 @@ class PostControllerTest {
         String page = postController.posts(model, session);
 
         verify(model).addAttribute("posts", posts);
-        assertThat(page, is("posts"));
+        assertThat(page, is("post/posts"));
     }
 
     @Test
@@ -63,6 +63,6 @@ class PostControllerTest {
         String page = postController.formUpdatePost(model, 1, session);
 
         verify(model).addAttribute("post", modPost);
-        assertThat(page, is("updatePost"));
+        assertThat(page, is("post/updatePost"));
     }
 }
