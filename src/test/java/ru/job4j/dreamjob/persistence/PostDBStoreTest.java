@@ -3,8 +3,8 @@ package ru.job4j.dreamjob.persistence;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import ru.job4j.dreamjob.Main;
-import ru.job4j.dreamjob.model.City;
-import ru.job4j.dreamjob.model.Post;
+import ru.job4j.dreamjob.models.City;
+import ru.job4j.dreamjob.models.Post;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

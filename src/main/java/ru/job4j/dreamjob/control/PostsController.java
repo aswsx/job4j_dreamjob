@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import ru.job4j.dreamjob.model.Post;
-import ru.job4j.dreamjob.model.User;
+import ru.job4j.dreamjob.models.Post;
+import ru.job4j.dreamjob.models.User;
 import ru.job4j.dreamjob.service.CityService;
 import ru.job4j.dreamjob.service.PostService;
 
@@ -21,13 +21,13 @@ import javax.servlet.http.HttpSession;
  */
 @ThreadSafe
 @Controller
-public class PostController {
+public class PostsController {
     private static final String REDIRECT = "redirect:/posts";
     private static final String GUEST = "Гость";
     private final PostService postService;
     private final CityService cityService;
 
-    public PostController(PostService postService, CityService cityService) {
+    public PostsController(PostService postService, CityService cityService) {
         this.postService = postService;
         this.cityService = cityService;
     }

@@ -1,4 +1,4 @@
-package ru.job4j.dreamjob.model;
+package ru.job4j.dreamjob.models;
 
 import lombok.*;
 

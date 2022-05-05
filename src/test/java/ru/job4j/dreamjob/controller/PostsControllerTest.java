@@ -2,8 +2,8 @@ package ru.job4j.dreamjob.controller;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.ui.Model;
-import ru.job4j.dreamjob.control.PostController;
-import ru.job4j.dreamjob.model.Post;
+import ru.job4j.dreamjob.control.PostsController;
+import ru.job4j.dreamjob.models.Post;
 import ru.job4j.dreamjob.service.CityService;
 import ru.job4j.dreamjob.service.PostService;
 
@@ -20,7 +20,7 @@ import static org.mockito.Mockito.*;
  * @version 1.0
  * @created 04/04/2022 - 22:49
  */
-class PostControllerTest {
+class PostsControllerTest {
 
     @Test
     void whenAddPost() {
@@ -35,11 +35,11 @@ class PostControllerTest {
         );
 
         when(postService.findAll()).thenReturn(posts);
-        PostController postController = new PostController(
+        PostsController postsController = new PostsController(
                 postService,
                 cityService
         );
-        String page = postController.posts(model, session);
+        String page = postsController.posts(model, session);
 
         verify(model).addAttribute("posts", posts);
         assertThat(page, is("post/posts"));
@@ -56,11 +56,11 @@ class PostControllerTest {
         Post modPost = new Post(1, "Modified post");
 
         when(postService.findById(1)).thenReturn(modPost);
-        PostController postController = new PostController(
+        PostsController postsController = new PostsController(
                 postService,
                 cityService
         );
-        String page = postController.formUpdatePost(model, 1, session);
+        String page = postsController.formUpdatePost(model, 1, session);
 
         verify(model).addAttribute("post", modPost);
         assertThat(page, is("post/updatePost"));

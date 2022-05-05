@@ -2,7 +2,7 @@ package ru.job4j.dreamjob.persistence;
 
 import net.jcip.annotations.ThreadSafe;
 import org.springframework.stereotype.Repository;
-import ru.job4j.dreamjob.model.Post;
+import ru.job4j.dreamjob.models.Post;
 
 import java.util.Collection;
 import java.util.Map;

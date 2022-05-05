@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import ru.job4j.dreamjob.model.User;
+import ru.job4j.dreamjob.models.User;
 import ru.job4j.dreamjob.service.UserService;
 
 import javax.servlet.http.HttpServletRequest;
@@ -21,11 +21,11 @@ import java.util.Optional;
  */
 @ThreadSafe
 @Controller
-public class UserController {
+public class UsersController {
     private final UserService userService;
     private static final String GUEST = "Гость";
 
-    public UserController(UserService userService) {
+    public UsersController(UserService userService) {
         this.userService = userService;
     }
 

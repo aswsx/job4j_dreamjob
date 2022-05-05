@@ -9,8 +9,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import ru.job4j.dreamjob.model.Candidate;
-import ru.job4j.dreamjob.model.User;
+import ru.job4j.dreamjob.models.Candidate;
+import ru.job4j.dreamjob.models.User;
 import ru.job4j.dreamjob.service.CandidateService;
 
 import javax.servlet.http.HttpSession;
@@ -23,12 +23,12 @@ import java.io.IOException;
  */
 @ThreadSafe
 @Controller
-public class CandidateController {
+public class CandidatesController {
     private static final String REDIRECT = "redirect:/candidates";
     private static final String GUEST = "Гость";
     private final CandidateService candidateService;
 
-    public CandidateController(CandidateService candidateService) {
+    public CandidatesController(CandidateService candidateService) {
         this.candidateService = candidateService;
     }
 

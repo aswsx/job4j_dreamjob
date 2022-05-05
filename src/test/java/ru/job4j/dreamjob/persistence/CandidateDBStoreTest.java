@@ -3,7 +3,7 @@ package ru.job4j.dreamjob.persistence;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import ru.job4j.dreamjob.Main;
-import ru.job4j.dreamjob.model.Candidate;
+import ru.job4j.dreamjob.models.Candidate;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;

@@ -2,7 +2,7 @@ package ru.job4j.dreamjob.persistence;
 
 import org.apache.commons.dbcp2.BasicDataSource;
 import org.springframework.stereotype.Repository;
-import ru.job4j.dreamjob.model.Candidate;
+import ru.job4j.dreamjob.models.Candidate;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
