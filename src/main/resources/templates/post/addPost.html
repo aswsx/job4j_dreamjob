@@ -52,13 +52,14 @@
         <div class="card" style="width: 100%">
             <div class="card-header">
                 Новая вакансия
-                <form th:action="@{/addPost}" method="POST">
+                <form th:method="POST" th:action="@{/addPost}">
                     <input type="hidden" name="id" value="0"/>
                     <div class="form-group">
                         <label for="name">Имя</label>
-                        <input type="text" class="form-control" name="name" id="name">
+                        <input type="text" class="form-control" id="name" name="name" placeholder="Имя">
                         <label for="description">Описание</label>
-                        <input type="text" class="form-control" id="description" name="description">
+                        <input type="text" class="form-control" id="description" name="description"
+                               placeholder="Описание">
                     </div>
                     <div class="form-group">
                         <label for="city.id">Город</label>

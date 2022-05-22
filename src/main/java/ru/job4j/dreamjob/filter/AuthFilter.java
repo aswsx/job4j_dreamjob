@@ -1,5 +1,7 @@
 package ru.job4j.dreamjob.filter;
 
+import org.springframework.stereotype.Component;
+
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -10,6 +12,7 @@ import java.io.IOException;
  * @version 1.0
  * @created 03/04/2022 - 11:20
  */
+@Component
 public class AuthFilter implements Filter {
 
     @Override

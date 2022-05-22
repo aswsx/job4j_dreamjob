@@ -7,7 +7,6 @@ import ru.job4j.dreamjob.models.Post;
 import java.util.Collection;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * @author Alex Gutorov
@@ -17,8 +16,6 @@ import java.util.concurrent.atomic.AtomicInteger;
 @ThreadSafe
 @Repository
 public class PostStore {
-    private static final AtomicInteger ID = new AtomicInteger();
-
     private final Map<Integer, Post> posts = new ConcurrentHashMap<>();
 
     private PostStore() {

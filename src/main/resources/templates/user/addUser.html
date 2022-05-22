@@ -52,7 +52,7 @@
         <div class="card" style="width: 100%">
             <div class="card-header">
                 Регистрация
-                <form th:action="@{/addUser}" method="POST" enctype="multipart/form-data">
+                <form th:method="POST" th:action="@{/addUser}" enctype="multipart/form-data">
                     <div class="form-group">
                         <input type="hidden" name="id" value="0"/>
                         <label for="name">Имя</label>

@@ -3,10 +3,7 @@ package ru.job4j.dreamjob.control;
 import net.jcip.annotations.ThreadSafe;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import ru.job4j.dreamjob.models.User;
 import ru.job4j.dreamjob.service.UserService;
 
@@ -49,7 +46,7 @@ public class UsersController {
             model.addAttribute("message", "Пользователь с такой почтой уже существует");
             return "redirect:/formAddUser?fail=true";
         }
-        return "redirect:/user/success";
+        return "redirect:/success";
     }
 
     @GetMapping("/formUpdateUser")
@@ -63,8 +60,8 @@ public class UsersController {
         return "user/updateUser";
     }
 
-    @PostMapping("/updateUser")
-    public String updateUser(Model model, @ModelAttribute User user) {
+    @PatchMapping("/updateUser")
+    public String updateUser(@ModelAttribute User user) {
         userService.updateUser(user);
         return "redirect:/success";
     }

@@ -54,7 +54,7 @@
                 Редатирование кандидата.
             </div>
             <div class="card-body">
-                <form th:action="@{/updateCandidate}" method="POST" enctype="multipart/form-data"
+                <form th:method="PATCH" th:action="@{/updateCandidate}" enctype="multipart/form-data"
                       th:object="${candidate}">
                     <div class="form-group">
                         <input type="hidden" name="id" th:field="*{id}"/>

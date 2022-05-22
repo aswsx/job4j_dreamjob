@@ -59,6 +59,7 @@
                 <th scope="col">Создано</th>
             </tr>
             </thead>
+
             <tbody>
             <tr th:each="candidate: ${candidates}">
                 <td th:text="${candidate.id}"></td>
@@ -71,7 +72,7 @@
                 <td>
                     <img th:width="150" th:high="150" th:src="@{|/photoCandidate/${candidate.id}|}">
                 </td>
-                <td th:text="${candidate.description}"/>
+                <td th:text="${candidate.description}"></td>
                 <td>
                     <span th:text="${candidate.created}"></span>
                 </td>

@@ -54,7 +54,7 @@
                 Редатирование пользователя.
             </div>
             <div class="card-body">
-                <form th:action="@{/updateUser}" method="POST" enctype="multipart/form-data"
+                <form th:method="PATCH" th:action="@{/updateUser}" enctype="multipart/form-data"
                       th:object="${user}">
                     <div class="form-group">
                         <input type="hidden" name="id" th:field="*{id}"/>

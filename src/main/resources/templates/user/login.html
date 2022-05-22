@@ -53,7 +53,7 @@
                 <div th:if="${fail}" class="alert alert-danger" role="alert">
                     Логин или пароль введены не верно!
                 </div>
-                <form th:action="@{/login}" method="POST">
+                <form th:method="POST" th:action="@{/login}">
                     <div class="form-group">
                         <label>Почта</label>
                         <input type="text" class="form-control" name="email">

@@ -34,11 +34,7 @@ public class CandidatesController {
 
     @GetMapping("/candidates")
     public String candidates(Model model, HttpSession session) {
-        User user = (User) session.getAttribute("user");
-        if (user == null) {
-            user = new User();
-            user.setName(GUEST);
-        }
+        User user = getUser(session);
         model.addAttribute("user", user);
         model.addAttribute("candidates", candidateService.findAll());
         return "candidate/candidates";
@@ -46,11 +42,7 @@ public class CandidatesController {
 
     @GetMapping("/formAddCandidate")
     public String formAddCandidate(Model model, HttpSession session) {
-        User user = (User) session.getAttribute("user");
-        if (user == null) {
-            user = new User();
-            user.setName(GUEST);
-        }
+        User user = getUser(session);
         model.addAttribute("user", user);
         return "candidate/addCandidate";
     }
@@ -65,17 +57,13 @@ public class CandidatesController {
 
     @GetMapping("/formUpdateCandidate/{candidateId}")
     public String formUpdateCandidate(Model model, @PathVariable("candidateId") int id, HttpSession session) {
-        User user = (User) session.getAttribute("user");
-        if (user == null) {
-            user = new User();
-            user.setName(GUEST);
-        }
+        User user = getUser(session);
         model.addAttribute("user", user);
         model.addAttribute("candidate", candidateService.findById(id));
         return "candidate/updateCandidate";
     }
 
-    @PostMapping("/updateCandidate")
+    @PatchMapping("/updateCandidate")
     public String updateCandidate(@ModelAttribute Candidate candidate,
                                   @RequestParam("file") MultipartFile file) throws IOException {
         candidate.setPhoto(file.getBytes());
@@ -91,5 +79,14 @@ public class CandidatesController {
                 .contentLength(candidate.getPhoto().length)
                 .contentType(MediaType.parseMediaType("application/octet-stream"))
                 .body(new ByteArrayResource(candidate.getPhoto()));
+    }
+
+    private User getUser(HttpSession session) {
+        User user = (User) session.getAttribute("user");
+        if (user == null) {
+            user = new User();
+            user.setName(GUEST);
+        }
+        return user;
     }
 }

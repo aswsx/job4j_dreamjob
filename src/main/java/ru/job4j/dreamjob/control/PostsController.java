@@ -3,10 +3,7 @@ package ru.job4j.dreamjob.control;
 import net.jcip.annotations.ThreadSafe;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 import ru.job4j.dreamjob.models.Post;
 import ru.job4j.dreamjob.models.User;
 import ru.job4j.dreamjob.service.CityService;
@@ -34,11 +31,7 @@ public class PostsController {
 
     @GetMapping("/posts")
     public String posts(Model model, HttpSession session) {
-        User user = (User) session.getAttribute("user");
-        if (user == null) {
-            user = new User();
-            user.setName(GUEST);
-        }
+        User user = getUser(session);
         model.addAttribute("user", user);
         model.addAttribute("posts", postService.findAll());
         return "post/posts";
@@ -46,11 +39,7 @@ public class PostsController {
 
     @GetMapping("/formAddPost")
     public String formAddPost(Model model, HttpSession session) {
-        User user = (User) session.getAttribute("user");
-        if (user == null) {
-            user = new User();
-            user.setName(GUEST);
-        }
+        User user = getUser(session);
         model.addAttribute("user", user);
         model.addAttribute("cities", cityService.getAllCities());
         return "post/addPost";
@@ -64,19 +53,24 @@ public class PostsController {
 
     @GetMapping("/formUpdatePost/{postId}")
     public String formUpdatePost(Model model, @PathVariable("postId") int id, HttpSession session) {
-        User user = (User) session.getAttribute("user");
-        if (user == null) {
-            user = new User();
-            user.setName(GUEST);
-        }
+        User user = getUser(session);
         model.addAttribute("user", user);
         model.addAttribute("post", postService.findById(id));
         return "post/updatePost";
     }
 
-    @PostMapping("/updatePost")
+    @PatchMapping("/updatePost")
     public String updatePost(@ModelAttribute Post post) {
         postService.update(post);
         return REDIRECT;
+    }
+
+    private User getUser(HttpSession session) {
+        User user = (User) session.getAttribute("user");
+        if (user == null) {
+            user = new User();
+            user.setName(GUEST);
+        }
+        return user;
     }
 }
